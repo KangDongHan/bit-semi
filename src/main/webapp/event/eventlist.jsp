@@ -120,7 +120,7 @@ button.bt {
 
 
 <body>
-<img src="./images/ev2.PNG" style="width:100%;">
+<img src="./images/ev1.PNG" style="width:100%;">
 <div class="container">
 	<span style="font-family: 'Noto Sans KR', sans-serif; font-weight:400;
 	 font-size:40pt;">이벤트</span>
