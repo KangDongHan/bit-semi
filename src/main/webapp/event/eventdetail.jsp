@@ -66,8 +66,14 @@
 				}
 			});
 		});
-		
-		
+		//댓글부분은 무조건 안보이게 처리
+		$('div.ecommnetupdateform').hide();
+		//댓글 클릭시 댓글부분이 보였다/안보였다 하기
+		$("span.eupdate").click(function(){
+			var idx=$(this).attr("idx");
+			$("#ecommnetupdateform"+idx).show();
+			$("div.tbcomment"+idx).hide();
+		});
 		
 	});
  </script>
@@ -275,6 +281,28 @@
 					align="left"
 					src="images/profile.PNG"/>
 					
+					
+					<div class="ecommnetupdateform" id="ecommnetupdateform<%=eldto.getIdx()%>">
+						<form action="event/ecommentupdateaction.jsp" method="post">
+							<input type="hidden" name="idx" value="<%=eldto.getIdx()%>">
+							<input type="hidden" name="currentPage" value="<%=currentPage%>">
+							<input type="hidden" name="num" value="<%=dto.getNum()%>">
+						<table>
+							 <tr>
+								<td width="480">
+									<textarea style="width: 630px;height: 70px;"
+									name="content" required="required"
+									class="form-control"><%=eldto.getContent()%></textarea>
+								</td>
+								<td>
+									<button type="submit" class="btn btn-info"
+									style="width: 70px;height:70px;">등록</button>
+								</td>
+							</tr>
+						</table>
+						</form>	
+					</div>
+					<div class="tbcomment<%= eldto.getIdx()%>">
 						 <table style="border-radius: 10px;
 								-moz-border-radius: 10px;
 								-khtml-border-radius: 10px;
@@ -303,12 +331,15 @@
 									//삭제 아이콘 보이게 하기
 									if(loginok!=null && eldto.getMyid().equals(myid)){%>
 										<td style="text-align:right; font-size:0.8em">
-										<a href="index.jsp?main=event/ecommentupdateform.jsp?num=<%= dto.getNum()%>&idx=<%=eldto.getIdx()%>&currentPage=<%=currentPage%>" 
-										style="color: black;">수정</a>
+										<!-- <a href="index.jsp?main=event/ecommentupdateform.jsp?num=<%= dto.getNum()%>&idx=<%=eldto.getIdx()%>&currentPage=<%=currentPage%>" 
+										style="color: black;">수정</a> -->
+										<span class='eupdate'
+										idx="<%=eldto.getIdx()%>"
+										style="color:margenta;cursor: pointer;">수정&nbsp;</span>
 										
 										<span class='edel'
 										idx="<%=eldto.getIdx()%>"
-										style="color:margenta;cursor: pointer;margin-left: 10px;">|삭제&nbsp;</span>
+										style="color:margenta;cursor: pointer;margin-left: 10px;margin-right:10px;">삭제&nbsp;</span>
 										</td>
 									<%}
 									%>
@@ -327,6 +358,7 @@
 						<span style="font-size: 9pt;color: gray;margin-left: 20px;">
 							<%=sdf.format(eldto.getWriteday()) %>
 						</span>
+						</div>
 						<br><br>
 						 <%}
 						 %>	

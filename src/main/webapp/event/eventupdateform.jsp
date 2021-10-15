@@ -41,7 +41,7 @@
 	
 <div class="container">
 
-  <h2 style="color :gray;">이벤트 글 작성</h2><br>  
+  <h2 style="color :gray;">이벤트 글 수정</h2><br>  
   <input type="hidden" id="writer" name="writer" value="<%= name%>">   
   <input type="hidden" id="num" name="num" value="<%= num%>">
   <table class="table table-hover">
